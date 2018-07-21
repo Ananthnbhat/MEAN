@@ -1,0 +1,3 @@
+[submodule "angular/tap-room"]
+	path = angular/tap-room
+	url = https://github.com/Ananthnbhat/MEAN/tree/master/angular
