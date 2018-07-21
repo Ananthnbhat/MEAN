@@ -1,0 +1,10 @@
+.left{
+    float:left;
+}
+.pod .list-group:after{
+    content: "";
+    display: inline-block;
+    background: url("../../assets/images/right-arrow-1.png") no-repeat top;
+    width: 14px;
+    height: 12px;
+}
