@@ -1,5 +1,6 @@
 <div class="pod row m-5 shadow bg-white rounded">
   <div class="left list-group col-xs-6 col-sm-6 col-md-5">
+      <h3 class="d-flex justify-content-center align-items-center">Menu</h3><br>
     <a *ngFor = "let currentKeg of kegs" (click) = "kegDetails(currentKeg)" [ngStyle]="{'background-color':getColor(currentKeg.alcoholContent)}" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{currentKeg.name}}</h5>
@@ -10,10 +11,7 @@
     </a>
   </div>
   <div *ngIf = "selectedKeg" class="col-xs-6 col-sm-6 col-md-7 right d-flex flex-column justify-content-center align-items-center">
-    <p [class] = "priorityColor(selectedKeg)">Price : <span><img src="../../assets/images/dollar-symbol.png" alt="dollar-symbol" width="11px" height="14px"></span>{{selectedKeg.price}} per pint</p>
+    <p [class] = "priorityColor(selectedKeg)">Price : ${{selectedKeg.price}} per pint</p>
     <p>Pints left : </p>
-    <p>alkeflkanfkankeflk</p>
-    <p>alkeflkanfkankeflk</p>
-    <p>alkeflkanfkankeflk</p>
   </div>
 </div>

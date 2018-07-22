@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Keg } from "../models/keg.model";
+import { Pint } from "../models/keg.model";
 
 @Component({
   selector: 'app-patron',
@@ -13,13 +14,16 @@ export class PatronComponent implements OnInit {
     new Keg("Budweiser", "Anheuser-Busch", 4, "Low"),
     new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium")
   ];
+
+  pint:Pint = new Pint(124);
+
   selectedKeg = null;
 
   kegDetails(currentKeg) {
     this.selectedKeg = currentKeg;
   }
 
-  priorityColor(currentKeg){
+  priorityColor(currentKeg) {
     if (currentKeg.price === 5) {
       return "mediumPriced";
     } else if (currentKeg.price < 5) {
@@ -29,7 +33,7 @@ export class PatronComponent implements OnInit {
     }
   }
 
-  getColor(alcoholContent) { 
+  getColor(alcoholContent) {
     switch (alcoholContent) {
       case 'Low':
         return '#ccffcc';
