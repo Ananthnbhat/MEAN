@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Keg } from "../models/keg.model";
-import { Pint } from "../models/keg.model";
 
 @Component({
   selector: 'app-patron',
@@ -9,13 +8,13 @@ import { Pint } from "../models/keg.model";
 })
 export class PatronComponent implements OnInit {
 
-  kegs: Keg[] = [
-    new Keg("Bud Light Platinum", "Anheuser-Busch", 8, "High"),
-    new Keg("Budweiser", "Anheuser-Busch", 4, "Low"),
-    new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium")
+ kegs: Keg[] = [
+    new Keg("Bud Light Platinum", "Anheuser-Busch", 8, "High", 124),
+    new Keg("Budweiser", "Anheuser-Busch", 4, "Low", 124),
+    new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124)
   ];
-
-  pint:Pint = new Pint(124);
+ 
+  
 
   selectedKeg = null;
 

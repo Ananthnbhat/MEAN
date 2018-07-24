@@ -1,4 +1,22 @@
-<p>
-  employee works!
-</p>
-
+<div class="pod row m-5 shadow bg-white rounded">
+  <div class="list-group col-xs-6 col-sm-6 col-md-5">
+    <button class=" btn btn-primary d-flex justify-content-center align-items-center">+ New</button>
+    <br>
+    <a *ngFor="let currentKeg of kegs" (click)="kegDetails(currentKeg)" [ngStyle]="{'background-color':getColor(currentKeg.alcoholContent)}"
+      class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{currentKeg.name}}</h5>
+      </div>
+    </a>
+  </div>
+  <div *ngIf="selectedKeg" class="col-xs-6 col-sm-6 col-md-7 d-flex flex-column justify-content-center align-items-center">
+    <p [class]="priorityColor(selectedKeg)">Price : ${{selectedKeg.price}} per pint</p>
+    <p>Pints left : {{selectedKeg.pints}}</p>
+    <p>Brand : {{selectedKeg.brand}}</p>
+    <p *ngIf="countPints(selectedKeg.pints)" style="color: red">Less than 10 pints left in this keg</p>
+    <p>Alcholo Content : {{selectedKeg.alcoholContent}}</p>
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-primary" type="submit">Edit</button>
+      <button class="btn btn-primary" type="submit" (click)="decreasedPint(selectedKeg)">Sold 1 pint</button>
+    </div>
+  </div>
