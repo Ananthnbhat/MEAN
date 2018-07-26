@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Keg } from "../models/keg.model";
-import { PatronComponent } from '../patron/patron.component';
 
 @Component({
   selector: 'app-employee',
@@ -15,7 +14,6 @@ export class EmployeeComponent implements OnInit {
     new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124),
     new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124)
   ];
-
 
 
   selectedKeg = null;
@@ -49,9 +47,9 @@ export class EmployeeComponent implements OnInit {
     if (pints <= 10) return true;
     else return false;
   }
-
-  decreasedPint(keg) {
-    keg.pints -= 1;
+  decreasedPint(selectedKeg:Keg){
+  selectedKeg.pints -= 1;
+  
   }
 
   constructor() { }
