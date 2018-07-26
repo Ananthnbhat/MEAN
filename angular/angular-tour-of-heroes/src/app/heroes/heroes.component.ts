@@ -9,15 +9,15 @@ import { HeroService } from "../hero.service";
 })
 export class HeroesComponent implements OnInit {
 
-  heroes: Hero[];
+  heroes: Hero[];  //heroes is an array of type Hero(class)
 
   selectedHero: Hero;
 
-  getHeroes():void{
-    this.heroes = this.heroService.getHeroes();
+  getHeroes(): void {
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
-  constructor(private heroService:HeroService) { }//injecting the HeroService
+  constructor(private heroService: HeroService) { }//injecting the HeroService
 
   ngOnInit() {
     this.getHeroes();
