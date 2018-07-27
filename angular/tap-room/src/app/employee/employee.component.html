@@ -16,7 +16,27 @@
     <p *ngIf="countPints(selectedKeg.pints)" style="color: red">Less than 10 pints left in this keg</p>
     <p>Alcholo Content : {{selectedKeg.alcoholContent}}</p>
     <div class="d-flex justify-content-between">
-      <button class="btn btn-primary" type="submit">Edit</button>
+      <button class="btn btn-primary" (click)="editKegDetails(selectedKeg)" type="submit">Edit</button>
       <button class="btn btn-primary" type="submit" (click)="decreasedPint(selectedKeg)">Sold 1 pint</button>
     </div>
+  </div>
+
+  <div *ngIf="editThisKeg" class="form-group col-xs-6 col-sm-6 col-md-7 d-flex flex-column justify-content-center align-items-center">
+    <label>Name:
+      <input class="form-control" type="text" [(ngModel)]="editThisKeg.name" placeholder="name" />
+    </label>
+    <label>Brand:
+      <input class="form-control" type="text" [(ngModel)]="editThisKeg.brand" placeholder="brand" />
+    </label>
+    <label>Price:  
+      <input class="form-control" [(ngModel)]="editThisKeg.price" placeholder="price" />
+    </label>
+    <label>Alcohol Content: 
+      <input class="form-control" type="text" [(ngModel)]="editThisKeg.alcoholContent" placeholder="alcoholContent" />
+    </label>
+    <label>Pints Left: 
+      <input class="form-control" [(ngModel)]="editThisKeg.pints" placeholder="pints" />
+    </label>
+    <br>
+    <button class="btn btn-primary" (click)="saveKegDetails(editThisKeg)" type="submit">Save</button>
   </div>

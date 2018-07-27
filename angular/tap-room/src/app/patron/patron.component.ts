@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Keg } from "../models/keg.model";
+import { KegsService } from "../kegs.service";
 
 @Component({
   selector: 'app-patron',
@@ -8,13 +9,18 @@ import { Keg } from "../models/keg.model";
 })
 export class PatronComponent implements OnInit {
 
- kegs: Keg[] = [
-    new Keg("Bud Light Platinum", "Anheuser-Busch", 8, "High", 124),
-    new Keg("Budweiser", "Anheuser-Busch", 4, "Low", 124),
-    new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124)
-  ];
- 
-  
+  kegs: Keg[];
+  //= [
+  //     new Keg("Bud Light Platinum", "Anheuser-Busch", 8, "High", 124),
+  //     new Keg("Budweiser", "Anheuser-Busch", 4, "Low", 124),
+  //     new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124)
+  //   ];
+
+  getKegs(): void {
+    this.kegsService.getKegs()
+      .subscribe(kegs => this.kegs = kegs);
+  }
+
 
   selectedKeg = null;
 
@@ -43,9 +49,10 @@ export class PatronComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private kegsService: KegsService) { }
 
   ngOnInit() {
+    this.getKegs();
   }
 
 }

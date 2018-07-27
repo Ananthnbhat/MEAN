@@ -1,5 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Keg } from "../models/keg.model";
+import { KegsService } from "../kegs.service";
 
 @Component({
   selector: 'app-employee',
@@ -8,18 +9,28 @@ import { Keg } from "../models/keg.model";
 })
 export class EmployeeComponent implements OnInit {
 
-  kegs: Keg[] = [
-    new Keg("Bud Light Platinum", "Anheuser-Busch", 8, "High", 124),
-    new Keg("Budweiser", "Anheuser-Busch", 4, "Low", 8),
-    new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124),
-    new Keg("Asahi", "Asahi Breweries, Ltd", 5, "Medium", 124)
-  ];
+  kegs: Keg[];
+  getKegs(): void {
+    this.kegsService.getKegs()
+      .subscribe(kegs => this.kegs = kegs);
+  }
 
 
   selectedKeg = null;
+  editThisKeg = null;
 
   kegDetails(currentKeg) {
     this.selectedKeg = currentKeg;
+  }
+
+  editKegDetails(keg) {
+    this.selectedKeg = null;
+    this.editThisKeg = keg;
+  }
+
+  saveKegDetails(keg) {
+    this.selectedKeg = keg;
+    this.editThisKeg = null;
   }
 
   priorityColor(currentKeg) {
@@ -47,14 +58,15 @@ export class EmployeeComponent implements OnInit {
     if (pints <= 10) return true;
     else return false;
   }
-  decreasedPint(selectedKeg:Keg){
-  selectedKeg.pints -= 1;
-  
+  decreasedPint(selectedKeg: Keg) {
+    selectedKeg.pints -= 1;
+
   }
 
-  constructor() { }
+  constructor(private kegsService: KegsService) { }
 
   ngOnInit() {
+    this.getKegs();
   }
 
 }
