@@ -1,7 +1,9 @@
 <div class="pod row m-5 shadow bg-white rounded">
   <div class="list-group col-xs-6 col-sm-6 col-md-5">
-      <h3 class="d-flex justify-content-center align-items-center">Menu</h3><br>
-    <a *ngFor = "let currentKeg of kegs" (click) = "kegDetails(currentKeg)" [ngStyle]="{'background-color':getColor(currentKeg.alcoholContent)}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <h3 class="d-flex justify-content-center align-items-center">Menu</h3>
+    <br>
+    <a *ngFor="let currentKeg of kegs" (click)="kegDetails(currentKeg)" [ngStyle]="{'background-color':getColor(currentKeg.alcoholContent)}"
+      class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{currentKeg.name}}</h5>
         <small>Alcohol Content : {{currentKeg.alcoholContent}}</small>
@@ -10,11 +12,19 @@
       <small></small>
     </a>
   </div>
-  <div *ngIf = "selectedKeg" class="col-xs-6 col-sm-6 col-md-7 d-flex flex-column justify-content-center align-items-center">
-    <h4><u>{{selectedKeg.name}}</u></h4>
+  <!-- Div to display keg details -->
+  <div *ngIf = "displayDetails" class="col-xs-6 col-sm-6 col-md-7 d-flex flex-column justify-content-center align-items-center">
+    <p>*Please click on any of the menu items to view it's details</p>
+  </div>
+  <div *ngIf="selectedKeg" class="col-xs-6 col-sm-6 col-md-7 d-flex flex-column justify-content-center align-items-center">
+    <h2 class="d-flex justify-content-start align-items-start">Details</h2>
+    <br>
+    <h4>
+      <u>{{selectedKeg.name}}</u>
+    </h4>
     <p></p>
     <p></p>
-    <p [class] = "priorityColor(selectedKeg)">Price : ${{selectedKeg.price}} per pint</p>
+    <p [class]="priorityColor(selectedKeg)">Price : ${{selectedKeg.price}} per pint</p>
     <p>Pints left : {{selectedKeg.pints}}</p>
   </div>
 </div>

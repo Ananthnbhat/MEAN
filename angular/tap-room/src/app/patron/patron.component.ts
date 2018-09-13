@@ -22,10 +22,12 @@ export class PatronComponent implements OnInit {
   }
 
 
-  selectedKeg = null;
+  selectedKeg:any = null;
+  displayDetails:boolean = true;
 
   kegDetails(currentKeg) {
     this.selectedKeg = currentKeg;
+    this.displayDetails = null;
   }
 
   priorityColor(currentKeg) {

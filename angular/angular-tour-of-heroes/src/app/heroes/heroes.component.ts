@@ -8,6 +8,7 @@ import { HeroService } from "../hero.service";
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
+  constructor(private heroService: HeroService) { }//injecting the HeroService
 
   heroes: Hero[];  //heroes is an array of type Hero(class)
 
@@ -17,7 +18,19 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
-  constructor(private heroService: HeroService) { }//injecting the HeroService
+  add(name: string): void {
+    name = name.trim();
+    if (!name) return;
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero).subscribe();
+  }
+
 
   ngOnInit() {
     this.getHeroes();
